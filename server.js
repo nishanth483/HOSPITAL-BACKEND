@@ -121,7 +121,7 @@ const port = process.env.PORT || 5000;
 
 // Configure CORS
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://hospitalbackend-gules.vercel.app'], // Update with your frontend domain
+    origin: ['http://localhost:3000', 'https://hospitalbackend-gules.vercel.app','https://sampledentalcare.vercel.app'], // Update with your frontend domain
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
