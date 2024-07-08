@@ -121,14 +121,16 @@ const port = process.env.PORT || 5000;
 
 // Configure CORS
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://hospitalbackend-gules.vercel.app','https://sampledentalcare.vercel.app'], // Update with your frontend domain
+    origin: ['http://localhost:3000', 'https://hospitalbackend-gules.vercel.app', 'https://sampledentalcare.vercel.app'],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
 
 app.use(bodyParser.json());
 
-app.post('/send', (req, res) => {
+app.options('*', cors()); // Enable pre-flight
+
+app.post('/send', async (req, res) => {
   const { name, email, message } = req.body;
   console.log(name);
   console.log(email);
@@ -149,15 +151,14 @@ app.post('/send', (req, res) => {
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
   };
 
-  sender.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-      res.status(500).send('Error sending email');
-    } else {
-      console.log('Mail sent successfully: ' + info.response);
-      res.status(200).send('Email sent successfully');
-    }
-  });
+  try {
+    await sender.sendMail(mailOptions);
+    console.log('Mail sent successfully');
+    res.status(200).send('Email sent successfully');
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error sending email');
+  }
 });
 
 app.listen(port, () => {
