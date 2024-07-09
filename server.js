@@ -174,7 +174,6 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Configure CORS
 const corsOptions = {
     origin: ['http://localhost:3000','https://localhost:3000','https://hospitalbackend-gules.vercel.app','https://sampledentalcare.vercel.app'],
     methods: ['GET', 'POST'],
