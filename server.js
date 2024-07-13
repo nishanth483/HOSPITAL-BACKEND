@@ -247,10 +247,7 @@ app.use(bodyParser.json());
 app.post('/send', async (req, res) => {
   const { name, email, message, toEmail } = req.body;
   console.log("req.body", req.body);
-  console.log(name);
-  console.log(email);
-  console.log(message);
-  console.log(toEmail);
+
 
   const sender = nodemailer.createTransport({
     service: 'gmail',
@@ -261,7 +258,7 @@ app.post('/send', async (req, res) => {
   });
 
   const mailOptions = {
-    from: email, // Replace with your email
+    from: 'nishanth1208199574@gmail.com', // Replace with your email
     to: toEmail,
     subject: 'Contact Form Submission',
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
