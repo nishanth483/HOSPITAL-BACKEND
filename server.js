@@ -245,11 +245,12 @@ app.options('*', cors(corsOptions)); // Enable pre-flight for all routes
 app.use(bodyParser.json());
 
 app.post('/send', async (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, message, toEmail } = req.body;
   console.log("req.body", req.body);
   console.log(name);
   console.log(email);
   console.log(message);
+  console.log(toEmail);
 
   const sender = nodemailer.createTransport({
     service: 'gmail',
@@ -260,8 +261,8 @@ app.post('/send', async (req, res) => {
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER, // Replace with your email
-    to: email,
+    from: email, // Replace with your email
+    to: toEmail,
     subject: 'Contact Form Submission',
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
   };
