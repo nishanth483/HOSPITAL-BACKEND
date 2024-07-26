@@ -302,7 +302,7 @@ app.options('*', cors(corsOptions)); // Enable pre-flight for all routes
 app.use(bodyParser.json());
 
 app.post('/send', async (req, res) => {
-  const { name, email, message, toEmail } = req.body;
+  const { name, email, message, toEmail,phone } = req.body;
   console.log("req.body", req.body);
 
   const sender = nodemailer.createTransport({
@@ -317,7 +317,7 @@ app.post('/send', async (req, res) => {
     from: process.env.EMAIL_USER, // Use environment variable for sender email
     to: toEmail,
     subject: 'Contact Form Submission',
-    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message} : ${phone}`
   };
 
   try {
