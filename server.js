@@ -317,7 +317,7 @@ app.post('/send', async (req, res) => {
     from: process.env.EMAIL_USER, // Use environment variable for sender email
     to: toEmail,
     subject: 'Contact Form Submission',
-    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message} : ${phone}`
+    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nPhone : ${phone}`
   };
 
   try {
