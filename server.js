@@ -290,7 +290,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 const corsOptions = {
-    origin: ['https://hospitalbackend-gules.vercel.app','http://sampledentalcare.vercel.app'],
+    origin: ['https://hospitalbackend-gules.vercel.app','https://sampledentalcare.vercel.app'],
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
     optionsSuccessStatus: 200 // For legacy browser support
